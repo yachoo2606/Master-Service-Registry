@@ -1,0 +1,69 @@
+---
+# This default profile is used when running a single instance completely standalone:
+spring:
+  config:
+    activate:
+      on-profile: default
+server:
+  port: 9000  
+eureka:
+  instance:
+    hostname: default-eureka-server.com
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+---
+spring:
+  config:
+    activate:
+      on-profile: peer-1
+  application:
+    name: eureka-server-clustered
+server:
+  port: 9001
+eureka:
+  instance:
+    hostname: peer-1-server.com
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://peer-2-server.com:9002/eureka/,http://peer-3-server.com:9003/eureka/
+
+---
+spring:
+  config:
+    activate:
+      on-profile: peer-2
+  application:
+    name: eureka-server-clustered
+server:
+  port: 9002
+eureka:
+  instance:
+    hostname: peer-2-server.com
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://peer-1-server.com:9001/eureka/,http://peer-3-server.com:9003/eureka/
+---
+spring:
+  config:
+    activate:
+      on-profile: peer-3
+  application:
+    name: eureka-server-clustered
+server:
+  port: 9003
+eureka:
+  instance:
+    hostname: peer-3-server.com
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://peer-1-server.com:9001/eureka/,http://peer-2-server.com:9002/eureka/
