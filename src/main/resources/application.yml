@@ -4,7 +4,7 @@ spring:
     activate:
       on-profile: default
 server:
-  port: 9000  
+  port: 9000
 eureka:
   instance:
     hostname: default-eureka-server
@@ -25,12 +25,12 @@ server:
   port: 9001
 eureka:
   instance:
-    hostname: peer-1-server
+    preferIpAddress: true
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: ${PEER_2_URL:http://peer-2-server.com:9002/eureka/},${PEER_3_URL:http://peer-3-server.com:9003/eureka/}
+      defaultZone: ${PEER_2_URL:http://localhost:9002/eureka/},${PEER_3_URL:http://localhost:9003/eureka/}
 
 ---
 spring:
@@ -43,12 +43,12 @@ server:
     port: 9002
 eureka:
   instance:
-    hostname: peer-2-server
+    preferIpAddress: true
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: ${PEER_1_URL:http://peer-1-server.com:9001/eureka/},${PEER_3_URL:http://peer-3-server.com:9003/eureka/}
+      defaultZone: ${PEER_1_URL:http://localhost:9001/eureka/},${PEER_3_URL:http://localhost:9003/eureka/}
 
 ---
 spring:
@@ -61,9 +61,9 @@ server:
   port: 9003
 eureka:
   instance:
-    hostname: peer-3-server
+    preferIpAddress: true
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: ${PEER_1_URL:http://peer-1-server.com:9001/eureka/},${PEER_2_URL:http://peer-2-server.com:9002/eureka/}
+      defaultZone: ${PEER_1_URL:http://localhost:9001/eureka/},${PEER_2_URL:http://localhost:9002/eureka/}
