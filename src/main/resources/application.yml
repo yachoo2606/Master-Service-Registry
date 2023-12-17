@@ -13,6 +13,9 @@ eureka:
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+logging:
+  logstash:
+    destination: ${LOGSTASH_DESTINATION:localhost:5000}
 
 ---
 spring:
@@ -31,7 +34,9 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: ${PEER_2_URL:http://localhost:9002/eureka/},${PEER_3_URL:http://localhost:9003/eureka/}
-
+logging:
+  logstash:
+    destination: ${LOGSTASH_DESTINATION:localhost:5000}
 ---
 spring:
   config:
@@ -49,7 +54,9 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: ${PEER_1_URL:http://localhost:9001/eureka/},${PEER_3_URL:http://localhost:9003/eureka/}
-
+logging:
+  logstash:
+    destination: ${LOGSTASH_DESTINATION:localhost:5000}
 ---
 spring:
   config:
@@ -67,3 +74,6 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: ${PEER_1_URL:http://localhost:9001/eureka/},${PEER_2_URL:http://localhost:9002/eureka/}
+logging:
+  logstash:
+    destination: ${LOGSTASH_DESTINATION:localhost:5000}
