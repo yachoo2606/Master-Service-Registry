@@ -15,7 +15,9 @@ eureka:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 logging:
   logstash:
-    destination: ${LOGSTASH_DESTINATION:localhost:5000}
+    destinationOne: ${LOGSTASH_DESTINATION_ONE:localhost:5000}
+    destinationTwo: ${LOGSTASH_DESTINATION_TWO:localhost:5001}
+    destinationThree: ${LOGSTASH_DESTINATION_THREE:localhost:5002}
 
 ---
 spring:
@@ -36,7 +38,10 @@ eureka:
       defaultZone: ${PEER_2_URL:http://localhost:9002/eureka/},${PEER_3_URL:http://localhost:9003/eureka/}
 logging:
   logstash:
-    destination: ${LOGSTASH_DESTINATION:localhost:5000}
+    destinationOne: ${LOGSTASH_DESTINATION_ONE:localhost:5000}
+    destinationTwo: ${LOGSTASH_DESTINATION_TWO:localhost:5001}
+    destinationThree: ${LOGSTASH_DESTINATION_THREE:localhost:5002}
+
 ---
 spring:
   config:
@@ -56,7 +61,10 @@ eureka:
       defaultZone: ${PEER_1_URL:http://localhost:9001/eureka/},${PEER_3_URL:http://localhost:9003/eureka/}
 logging:
   logstash:
-    destination: ${LOGSTASH_DESTINATION:localhost:5000}
+    destinationOne: ${LOGSTASH_DESTINATION_ONE:localhost:5000}
+    destinationTwo: ${LOGSTASH_DESTINATION_TWO:localhost:5001}
+    destinationThree: ${LOGSTASH_DESTINATION_THREE:localhost:5002}
+
 ---
 spring:
   config:
@@ -76,4 +84,6 @@ eureka:
       defaultZone: ${PEER_1_URL:http://localhost:9001/eureka/},${PEER_2_URL:http://localhost:9002/eureka/}
 logging:
   logstash:
-    destination: ${LOGSTASH_DESTINATION:localhost:5000}
+    destinationOne: ${LOGSTASH_DESTINATION_ONE:localhost:5000}
+    destinationTwo: ${LOGSTASH_DESTINATION_TWO:localhost:5001}
+    destinationThree: ${LOGSTASH_DESTINATION_THREE:localhost:5002}
