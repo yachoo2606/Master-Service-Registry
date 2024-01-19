@@ -23,7 +23,7 @@
                 <pattern>
                     <pattern>
                         {
-                        "app": "${appName}"
+                        "app": "${appName}",
                         "ip": "%property{CONTAINER_IP}"
                         }
                     </pattern>
