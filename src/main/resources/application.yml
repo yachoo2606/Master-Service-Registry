@@ -8,11 +8,16 @@ server:
 eureka:
   instance:
     hostname: default-eureka-server
+    leaseRenewalIntervalInSeconds: 10  # Default is 30 seconds
+    leaseExpirationDurationInSeconds: 30  # Default is 90 seconds
   client:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    enableSelfPreservation: true
+    evictionIntervalTimerInMs: 1000
 logging:
   logstash:
     destinationOne: ${LOGSTASH_DESTINATION_ONE:localhost:5000}
@@ -31,11 +36,16 @@ server:
 eureka:
   instance:
     preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
       defaultZone: ${PEER_2_URL:http://localhost:9002/eureka/},${PEER_3_URL:http://localhost:9003/eureka/}
+  server:
+    enableSelfPreservation: true
+    evictionIntervalTimerInMs: 1000
 logging:
   logstash:
     destinationOne: ${LOGSTASH_DESTINATION_ONE:localhost:5000}
@@ -50,15 +60,20 @@ spring:
   application:
     name: eureka-server-clustered
 server:
-    port: 9002
+  port: 9002
 eureka:
   instance:
     preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
       defaultZone: ${PEER_1_URL:http://localhost:9001/eureka/},${PEER_3_URL:http://localhost:9003/eureka/}
+  server:
+      enableSelfPreservation: true
+      evictionIntervalTimerInMs: 1000
 logging:
   logstash:
     destinationOne: ${LOGSTASH_DESTINATION_ONE:localhost:5000}
@@ -77,6 +92,12 @@ server:
 eureka:
   instance:
     preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
+  server:
+      enableSelfPreservation: true
+      evictionIntervalTimerInMs: 1000
+
   client:
     registerWithEureka: true
     fetchRegistry: true
